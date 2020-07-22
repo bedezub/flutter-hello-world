@@ -24,6 +24,14 @@ class ScaffoldExample extends StatelessWidget {
           )
         ],
       ),
+
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text("Menu")),
+        BottomNavigationBarItem(icon: Icon(Icons.ac_unit), title: Text("Second")),
+        BottomNavigationBarItem(icon: Icon(Icons.account_balance), title: Text("Third")),
+      ],  onTap: (int index) => debugPrint("Tapped index: $index"),
+      ),
+
       backgroundColor: Colors.redAccent,
       body: Container(
           alignment: Alignment.center,
