@@ -25,6 +25,12 @@ class ScaffoldExample extends StatelessWidget {
         ],
       ),
 
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlue,
+        child: Icon(Icons.call_missed),
+        onPressed: () => debugPrint("Button Pressedr"),
+      ),
+
       bottomNavigationBar: BottomNavigationBar(items: [
         BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text("Menu")),
         BottomNavigationBarItem(icon: Icon(Icons.ac_unit), title: Text("Second")),
