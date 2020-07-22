@@ -17,14 +17,31 @@ class ScaffoldExample extends StatelessWidget {
             icon: Icon(Icons.email),
             onPressed: () => debugPrint("Email send!"),
           ),
+
           IconButton(
             icon: Icon(Icons.access_time),
             onPressed: () => _tapButton(),
           )
         ],
       ),
-      body: Center(
-        child: Text("Hello mellow"),
+
+      backgroundColor: Colors.redAccent,
+
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            
+            InkWell(
+
+            child: RaisedButton(
+              onPressed: () => debugPrint("tapping button"),
+              child: const Text('Enabled Button', style: TextStyle(fontSize: 20)),
+            ),
+            )
+          ]
+        )
       ),
     );
   }
