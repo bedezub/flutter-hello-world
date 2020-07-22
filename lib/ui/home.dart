@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/buttons/custom_button.dart';
 
 class ScaffoldExample extends StatelessWidget {
   _tapButton() {
@@ -17,32 +18,29 @@ class ScaffoldExample extends StatelessWidget {
             icon: Icon(Icons.email),
             onPressed: () => debugPrint("Email send!"),
           ),
-
           IconButton(
             icon: Icon(Icons.access_time),
             onPressed: () => _tapButton(),
           )
         ],
       ),
-
       backgroundColor: Colors.redAccent,
-
       body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            
-            InkWell(
+          alignment: Alignment.center,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
 
-            child: RaisedButton(
-              onPressed: () => debugPrint("tapping button"),
-              child: const Text('Enabled Button', style: TextStyle(fontSize: 20)),
-            ),
-            )
-          ]
-        )
-      ),
+                CustomButton()
+
+                // InkWell(
+                //   child: RaisedButton(
+                //     onPressed: () => debugPrint("tapping button"),
+                //     child: const Text('Enabled Button',
+                //         style: TextStyle(fontSize: 20)),
+                //   ),
+                // )
+              ])),
     );
   }
 }
