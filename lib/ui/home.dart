@@ -1,6 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/buttons/custom_button.dart';
 
+class BillSplitter extends StatefulWidget {
+  @override
+  _BillSplitter createState() => _BillSplitter();
+}
+
+class _BillSplitter extends State<BillSplitter> {
+  int _tipPercentage = 0;
+  int _personCounter = 1;
+  double _billAmount = 0.0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.10),
+        alignment: Alignment.center,
+        color: Colors.white,
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          padding: EdgeInsets.all(20.5),
+          children: <Widget>[
+            Container(
+              width: 100,
+              height: 150,
+              decoration: BoxDecoration(
+                color: Colors.purpleAccent.shade100,
+                borderRadius: BorderRadius.circular(14.5)
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Total Per Person"),
+                  Text("RM10.00")
+                ],
+              ),
+            )
+          ],
+        ),
+      )
+    );
+  }
+}
+
 class ScaffoldExample extends StatelessWidget {
   _tapButton() {
     debugPrint("Tap tap tap");
@@ -152,40 +194,32 @@ class _WisdomState extends State<Wisdom> {
             Expanded(
               child: Center(
                 child: Container(
-                  width: 350,
-                  height: 200,
-                  margin: EdgeInsets.all(30),
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(14.5)
-                  ),
-                  child: Center(
-                    child: Text(balance[_counter % balance.length], 
-                      style: TextStyle(
-                        color: Colors.grey.shade900,
-                        fontSize: 20,
-                      )
-                    )
-                  )
-                ),
+                    width: 350,
+                    height: 200,
+                    margin: EdgeInsets.all(30),
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(14.5)),
+                    child: Center(
+                        child: Text(balance[_counter % balance.length],
+                            style: TextStyle(
+                              color: Colors.grey.shade900,
+                              fontSize: 20,
+                            )))),
               ),
             ),
             Divider(thickness: 1.5),
             Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: FlatButton.icon(
-                onPressed: _showQuote, // Dart calling function, no () weird.
-                color: Colors.greenAccent.shade400,
-                icon: Icon(Icons.account_balance_wallet),
-                label: Text(
-                  "Money money",
-                  style: TextStyle(
-                    fontSize: 20, 
-                    color: Colors.white
+                padding: const EdgeInsets.only(top: 10),
+                child: FlatButton.icon(
+                  onPressed: _showQuote, // Dart calling function, no () weird.
+                  color: Colors.greenAccent.shade400,
+                  icon: Icon(Icons.account_balance_wallet),
+                  label: Text(
+                    "Money money",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
-                  ),
-              )
-            ),
+                )),
             Spacer()
           ],
         ),
