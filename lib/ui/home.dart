@@ -87,10 +87,7 @@ class BizCard extends StatelessWidget {
         alignment: Alignment.center,
         child: Stack(
           alignment: Alignment.topCenter,
-          children: [
-            _getCard(),
-            _getAvatar()
-          ],
+          children: [_getCard(), _getAvatar()],
         ),
       ),
     );
@@ -102,22 +99,19 @@ class BizCard extends StatelessWidget {
       height: 200,
       margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
       decoration: BoxDecoration(
-        color: Colors.redAccent,
-        borderRadius: BorderRadius.circular(4.5)
-      ),
-
+          color: Colors.redAccent, borderRadius: BorderRadius.circular(4.5)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Zubli Quzaini", 
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text("Zubli Quzaini",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white)),
           Text("zubliquzaini@gmail.com"),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.person_outline),
-              Text("@bedezub")
-            ],
+            children: [Icon(Icons.person_outline), Text("@bedezub")],
           )
         ],
       ),
@@ -129,13 +123,80 @@ class BizCard extends StatelessWidget {
       width: 100,
       height: 100,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(50.0)),
-        border: Border.all(color: Colors.pinkAccent, width: 2.2),
-        image: DecorationImage(image: NetworkImage("https://picsum.photos/200"),
-        fit: BoxFit.cover
-        )
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(50.0)),
+          border: Border.all(color: Colors.pinkAccent, width: 2.2),
+          image: DecorationImage(
+              image: NetworkImage("https://picsum.photos/200"),
+              fit: BoxFit.cover)),
+    );
+  }
+}
+
+class Wisdom extends StatefulWidget {
+  @override
+  _WisdomState createState() => _WisdomState();
+}
+
+class _WisdomState extends State<Wisdom> {
+  int _counter = 0;
+  List balance = ["100", "200", "300", "400", "500"];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: Center(
+                child: Container(
+                  width: 350,
+                  height: 200,
+                  margin: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(14.5)
+                  ),
+                  child: Center(
+                    child: Text(balance[_counter % balance.length], 
+                      style: TextStyle(
+                        color: Colors.grey.shade900,
+                        fontSize: 20,
+                      )
+                    )
+                  )
+                ),
+              ),
+            ),
+            Divider(thickness: 1.5),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: FlatButton.icon(
+                onPressed: _showQuote, // Dart calling function, no () weird.
+                color: Colors.greenAccent.shade400,
+                icon: Icon(Icons.account_balance_wallet),
+                label: Text(
+                  "Money money",
+                  style: TextStyle(
+                    fontSize: 20, 
+                    color: Colors.white
+                  ),
+                  ),
+              )
+            ),
+            Spacer()
+          ],
+        ),
       ),
     );
+  }
+
+  _showQuote() {
+    // Increment index by 1
+    setState(() {
+      _counter++;
+    });
   }
 }
