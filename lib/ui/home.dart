@@ -66,14 +66,14 @@ class _BillSplitter extends State<BillSplitter> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 style: TextStyle(color: _orange),
                 decoration: InputDecoration(
-                    prefixText: "Bill Amount",
-                    prefixIcon: Icon(Icons.attach_money),
-                    enabledBorder: UnderlineInputBorder(      
-                      borderSide: BorderSide(color: _orange),   
-                    ),  
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: _orange),
-                    ),
+                  prefixText: "Bill Amount",
+                  prefixIcon: Icon(Icons.attach_money),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: _orange),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: _orange),
+                  ),
                 ),
                 onChanged: (String value) {
                   try {
@@ -149,7 +149,7 @@ class _BillSplitter extends State<BillSplitter> {
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      "RM10.00",
+                      "RM${calculateTotal}",
                       style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
@@ -187,6 +187,20 @@ class _BillSplitter extends State<BillSplitter> {
         ],
       ),
     ));
+  }
+
+  calculateTotalPerPerson(double totalTip, double billAmount, int splitBy) {
+    var totalPerPerson = (totalTip + billAmount) / splitBy;
+    return totalPerPerson;
+  }
+
+  calculateTotalTip(double billAmount, int splitBy, int tipPercentage) {
+    double totalTip = 0.0;
+
+    if (billAmount < 0 || billAmount.toString().isEmpty || billAmount == null) {
+    } else {
+      totalTip = (billAmount + tipPercentage) / 100;
+    }
   }
 }
 
