@@ -35,23 +35,16 @@ class _BillSplitter extends State<BillSplitter> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Total Per Person",
-                    style: TextStyle(
-                      fontSize: 10.0,
-                      color: _orange
-                    )
-                  ), 
-                  
+                  Text("Total Per Person",
+                      style: TextStyle(fontSize: 15.0, color: _orange)),
                   Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
                       "RM10.00",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0,
-                        color: _orange
-                      ),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 35.0,
+                          color: _orange),
                     ),
                   )
                 ],
@@ -74,7 +67,14 @@ class _BillSplitter extends State<BillSplitter> {
                 style: TextStyle(color: _orange),
                 decoration: InputDecoration(
                     prefixText: "Bill Amount",
-                    prefixIcon: Icon(Icons.attach_money)),
+                    prefixIcon: Icon(Icons.attach_money),
+                    enabledBorder: UnderlineInputBorder(      
+                      borderSide: BorderSide(color: _orange),   
+                    ),  
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: _orange),
+                    ),
+                ),
                 onChanged: (String value) {
                   try {
                     _billAmount = double.parse(value);
@@ -87,9 +87,8 @@ class _BillSplitter extends State<BillSplitter> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Split", style: TextStyle(color: Colors.grey.shade700)),
-                  Row(
-                    children: [
-                      InkWell(
+                  Row(children: [
+                    InkWell(
                         onTap: () {
                           setState(() {
                             if (_personCounter > 1) {
@@ -98,54 +97,49 @@ class _BillSplitter extends State<BillSplitter> {
                           });
                         },
                         child: Container(
-                          width: 40.0,
-                          height: 40.0,
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7.0),
-                              color: _orange.withOpacity(0.1)),
-                          child: Center(
-                            child: Text(
-                              "-",
-                              style: TextStyle(
-                                  color: _orange,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17.0),
-                            ),
-                          )
-                        )
-                      ),
-                      Text("$_personCounter",
-                          style: TextStyle(
-                              color: _orange,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17.00)),
-                      InkWell(
+                            width: 40.0,
+                            height: 40.0,
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(7.0),
+                                color: _orange.withOpacity(0.1)),
+                            child: Center(
+                              child: Text(
+                                "-",
+                                style: TextStyle(
+                                    color: _orange,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17.0),
+                              ),
+                            ))),
+                    Text("$_personCounter",
+                        style: TextStyle(
+                            color: _orange,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17.00)),
+                    InkWell(
                         onTap: () {
                           setState(() {
                             _personCounter++;
                           });
                         },
                         child: Container(
-                          width: 40.0,
-                          height: 40.0,
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7.0),
-                              color: _orange.withOpacity(0.1)),
-                          child: Center(
-                            child: Text(
-                              "+",
-                              style: TextStyle(
-                                  color: _orange,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17.0),
-                            ),
-                          )
-                        )
-                      ),
-                    ]
-                  )
+                            width: 40.0,
+                            height: 40.0,
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(7.0),
+                                color: _orange.withOpacity(0.1)),
+                            child: Center(
+                              child: Text(
+                                "+",
+                                style: TextStyle(
+                                    color: _orange,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17.0),
+                              ),
+                            ))),
+                  ])
                 ],
               ),
               Row(
@@ -157,11 +151,34 @@ class _BillSplitter extends State<BillSplitter> {
                     child: Text(
                       "RM10.00",
                       style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: _orange
-                      ),
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: _orange),
                     ),
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    "$_tipPercentage%",
+                    style: TextStyle(
+                        color: _orange,
+                        fontSize: 17.00,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Slider(
+                    min: 0,
+                    max: 100,
+                    activeColor: _orange,
+                    inactiveColor: Colors.grey,
+                    divisions: 10,
+                    value: _tipPercentage.toDouble(),
+                    onChanged: (double newValue) {
+                      setState(() {
+                        _tipPercentage = newValue.round();
+                      });
+                    },
                   )
                 ],
               )
