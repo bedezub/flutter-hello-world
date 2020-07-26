@@ -34,7 +34,27 @@ class _BillSplitter extends State<BillSplitter> {
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text("Total Per Person"), Text("RM10.00")],
+                children: [
+                  Text(
+                    "Total Per Person",
+                    style: TextStyle(
+                      fontSize: 10.0,
+                      color: _orange
+                    )
+                  ), 
+                  
+                  Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                      "RM10.00",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0,
+                        color: _orange
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
           ),
@@ -62,6 +82,88 @@ class _BillSplitter extends State<BillSplitter> {
                     _billAmount = 0.0;
                   }
                 },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Split", style: TextStyle(color: Colors.grey.shade700)),
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            if (_personCounter > 1) {
+                              _personCounter--;
+                            }
+                          });
+                        },
+                        child: Container(
+                          width: 40.0,
+                          height: 40.0,
+                          margin: EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7.0),
+                              color: _orange.withOpacity(0.1)),
+                          child: Center(
+                            child: Text(
+                              "-",
+                              style: TextStyle(
+                                  color: _orange,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17.0),
+                            ),
+                          )
+                        )
+                      ),
+                      Text("$_personCounter",
+                          style: TextStyle(
+                              color: _orange,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17.00)),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _personCounter++;
+                          });
+                        },
+                        child: Container(
+                          width: 40.0,
+                          height: 40.0,
+                          margin: EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7.0),
+                              color: _orange.withOpacity(0.1)),
+                          child: Center(
+                            child: Text(
+                              "+",
+                              style: TextStyle(
+                                  color: _orange,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17.0),
+                            ),
+                          )
+                        )
+                      ),
+                    ]
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Tip", style: TextStyle(color: Colors.grey.shade700)),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "RM10.00",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: _orange
+                      ),
+                    ),
+                  )
+                ],
               )
             ]),
           )
